@@ -624,12 +624,8 @@
                 <div class="text-center">
                     <h2 class="text-4xl sm:text-5xl font-bold tracking-[-0.04em] leading-[1.05]">Start free. No commitment.</h2>
                     <p class="mt-5 text-muted">Transparent pricing. Upgrade whenever you're ready.</p>
-                    <div class="mt-8 inline-flex p-1 rounded-full hairline" role="tablist" aria-label="Plan type">
-                        <button class="plan-tab px-5 py-2 rounded-full text-sm font-medium border transition-colors" data-plan="individual" role="tab">Individual</button>
-                        <button class="plan-tab px-5 py-2 rounded-full text-sm font-medium border transition-colors" data-plan="team" role="tab">Team &amp; Enterprise</button>
-                    </div>
                     <!-- Billing period -->
-                    <div id="billingSwitch" class="mt-6 flex items-center justify-center gap-3 text-sm" role="radiogroup" aria-label="Billing period">
+                    <div id="billingSwitch" class="mt-8 flex items-center justify-center gap-3 text-sm" role="radiogroup" aria-label="Billing period">
                         <button type="button" class="bill-opt font-medium transition-colors" data-period="monthly" role="radio">Monthly</button>
                         <button type="button" id="billToggle" class="relative w-11 h-6 rounded-full hairline bg-raised transition-colors" aria-label="Switch billing period">
                             <span id="billKnob" class="absolute top-[3px] left-[3px] w-4 h-4 rounded-full bg-white transition-transform duration-300"></span>
@@ -640,22 +636,7 @@
                 </div>
 
                 <!-- Individual -->
-                <div id="plans-individual" class="mt-12 grid md:grid-cols-3 gap-4" role="tabpanel"></div>
-
-                <!-- Team -->
-                <div id="plans-team" class="hidden mt-12 p-10 lg:p-14 rounded-3xl bg-surface hairline grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center" role="tabpanel">
-                    <div>
-                        <h3 class="text-3xl font-bold tracking-tight">Node AI for Teams</h3>
-                        <p class="mt-4 text-muted leading-relaxed max-w-md">A shared workspace for your company: pooled tokens, admin controls, centralized billing and priority support.</p>
-                        <a href="mailto:sales@node-ai.app" class="mt-8 inline-flex px-6 py-3 rounded-full font-medium bg-white text-ink hover:bg-white/90 transition-colors">Contact sales</a>
-                    </div>
-                    <ul class="space-y-3.5 text-sm text-white/80">
-                        <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 text-mint shrink-0"></i>Shared token pool for the whole team</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 text-mint shrink-0"></i>Roles, seats and usage analytics</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 text-mint shrink-0"></i>Custom assistants for your workflows</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 text-mint shrink-0"></i>Invoicing and dedicated support</li>
-                    </ul>
-                </div>
+                <div id="plans-individual" class="mt-12 grid md:grid-cols-3 gap-4"></div>
                 <p class="mt-8 text-center text-xs text-faint">Prices shown don't include applicable taxes. Usage limits apply. See our <a href="refund.html" class="underline underline-offset-2 hover:text-white transition-colors">Refund Policy</a> and <a href="terms.html" class="underline underline-offset-2 hover:text-white transition-colors">Terms of Service</a>.</p>
             </div>
         </section>
@@ -1224,13 +1205,6 @@
                     </div>
                 </article>`).join(''); renderIcons(); };
             
-            const planTabs = document.querySelectorAll('.plan-tab');
-            const setPlan = (k) => {
-                planTabs.forEach(t => setPill(t, t.dataset.plan === k));
-                $('plans-individual').classList.toggle('hidden', k !== 'individual');
-                $('plans-team').classList.toggle('hidden', k !== 'team');
-                $('billingSwitch').classList.toggle('invisible', k !== 'individual');
-            };
             let period = 'yearly';
             const setPeriod = (pd) => {
                 period = pd;
@@ -1245,8 +1219,6 @@
             };
             document.querySelectorAll('.bill-opt').forEach(b => b.addEventListener('click', () => setPeriod(b.dataset.period)));
             $('billToggle').addEventListener('click', () => setPeriod(period === 'yearly' ? 'monthly' : 'yearly'));
-            planTabs.forEach(t => t.addEventListener('click', () => setPlan(t.dataset.plan)));
-            setPlan('individual');
             setPeriod('yearly');
 
             /* Capabilities: tone chips */
