@@ -624,14 +624,13 @@
                 <div class="text-center">
                     <h2 class="text-4xl sm:text-5xl font-bold tracking-[-0.04em] leading-[1.05]">Start free. No commitment.</h2>
                     <p class="mt-5 text-muted">Transparent pricing. Upgrade whenever you're ready.</p>
-                    <!-- Billing period -->
-                    <div id="billingSwitch" class="mt-8 flex items-center justify-center gap-3 text-sm" role="radiogroup" aria-label="Billing period">
-                        <button type="button" class="bill-opt font-medium transition-colors" data-period="monthly" role="radio">Monthly</button>
-                        <button type="button" id="billToggle" class="relative w-11 h-6 rounded-full hairline bg-raised transition-colors" aria-label="Switch billing period">
-                            <span id="billKnob" class="absolute top-[3px] left-[3px] w-4 h-4 rounded-full bg-white transition-transform duration-300"></span>
+                    <!-- Billing period: segmented control -->
+                    <div id="billingSwitch" class="mt-8 relative inline-grid grid-cols-2 p-1 rounded-full hairline bg-surface text-sm font-medium" role="radiogroup" aria-label="Billing period">
+                        <span id="billKnob" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300 ease-out" aria-hidden="true"></span>
+                        <button type="button" class="bill-opt relative z-10 px-6 py-2.5 rounded-full transition-colors" data-period="monthly" role="radio">Monthly</button>
+                        <button type="button" class="bill-opt relative z-10 inline-flex items-center justify-center gap-2 pl-6 pr-2.5 py-2.5 rounded-full transition-colors" data-period="yearly" role="radio">
+                            Yearly <span class="px-2 py-0.5 rounded-full bg-ink text-[11px] font-semibold text-mint">−40%</span>
                         </button>
-                        <button type="button" class="bill-opt font-medium transition-colors" data-period="yearly" role="radio">Yearly</button>
-                        <span class="px-2 py-0.5 rounded-full border border-mint/50 text-[11px] font-medium text-mint">Save up to 40%</span>
                     </div>
                 </div>
 
@@ -1211,14 +1210,13 @@
                 document.querySelectorAll('.bill-opt').forEach(b => {
                     const on = b.dataset.period === pd;
                     b.setAttribute('aria-checked', String(on));
-                    b.classList.toggle('text-white', on); b.classList.toggle('text-muted', !on);
+                    b.classList.toggle('text-ink', on); b.classList.toggle('text-muted', !on); b.classList.toggle('hover:text-white', !on);
                 });
-                $('billKnob').style.transform = pd === 'yearly' ? 'translateX(20px)' : 'none';
-                $('billToggle').classList.toggle('bg-mint/30', pd === 'yearly');
+                $('billKnob').style.transform = pd === 'yearly' ? 'translateX(100%)' : 'none';
                 renderPlans(pd);
             };
             document.querySelectorAll('.bill-opt').forEach(b => b.addEventListener('click', () => setPeriod(b.dataset.period)));
-            $('billToggle').addEventListener('click', () => setPeriod(period === 'yearly' ? 'monthly' : 'yearly'));
+            $('billingSwitch').addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') setPeriod('monthly'); if (e.key === 'ArrowRight') setPeriod('yearly'); });
             setPeriod('yearly');
 
             /* Capabilities: tone chips */
