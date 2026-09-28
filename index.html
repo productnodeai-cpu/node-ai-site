@@ -628,6 +628,15 @@
                         <button class="plan-tab px-5 py-2 rounded-full text-sm font-medium border transition-colors" data-plan="individual" role="tab">Individual</button>
                         <button class="plan-tab px-5 py-2 rounded-full text-sm font-medium border transition-colors" data-plan="team" role="tab">Team &amp; Enterprise</button>
                     </div>
+                    <!-- Billing period -->
+                    <div id="billingSwitch" class="mt-6 flex items-center justify-center gap-3 text-sm" role="radiogroup" aria-label="Billing period">
+                        <button type="button" class="bill-opt font-medium transition-colors" data-period="monthly" role="radio">Monthly</button>
+                        <button type="button" id="billToggle" class="relative w-11 h-6 rounded-full hairline bg-raised transition-colors" aria-label="Switch billing period">
+                            <span id="billKnob" class="absolute top-[3px] left-[3px] w-4 h-4 rounded-full bg-white transition-transform duration-300"></span>
+                        </button>
+                        <button type="button" class="bill-opt font-medium transition-colors" data-period="yearly" role="radio">Yearly</button>
+                        <span class="px-2 py-0.5 rounded-full border border-mint/50 text-[11px] font-medium text-mint">Save up to 40%</span>
+                    </div>
                 </div>
 
                 <!-- Individual -->
@@ -1179,22 +1188,33 @@
 
             /* PRICING */
             const plans = [
-                { name: 'Free', sub: 'Get started with Node AI', price: '$0', note: 'Free for everyone', cta: 'Get started', style: 'hairline', lead: '',
+                { name: 'Free', sub: 'Get started with Node AI', free: true, cta: 'Get started', style: 'hairline', lead: '',
                   items: [['100 tokens per month', 1], ['Basic chat access', 1], ['Standard queue', 1], ['Image generation', 0], ['Video and music', 0], ['Chat with PDFs and files', 0], ['Priority queue', 0], ['Commercial use', 0]] },
-                { name: 'Pro', sub: 'For creators and professionals', price: '$9.99', note: '3-day free trial, then $9.99/month', cta: 'Get Pro', style: 'highlight', lead: 'Everything in Free, plus:',
+                { name: 'Pro', sub: 'For creators and professionals', pricing: { monthly: 9.99, yearly: 71.99 }, trial: '3-day free trial', cta: 'Get Pro', style: 'highlight', lead: 'Everything in Free, plus:',
                   items: [['2,000 tokens per month', 1], ['Unlimited chat with all models', 1], ['Image, video and music generation', 1], ['Chat with PDFs, links and YouTube', 1], ['Assistants and templates', 1], ['Priority generation queue', 1], ['No ads, commercial use', 1]] },
-                { name: 'Ultra', sub: 'For power users', price: '$24.99', note: 'Billed monthly', cta: 'Get Ultra', style: 'hairline', lead: 'Everything in Pro, plus:',
+                { name: 'Ultra', sub: 'For power users', pricing: { monthly: 24.99, yearly: 179.99 }, cta: 'Get Ultra', style: 'hairline', lead: 'Everything in Pro, plus:',
                   items: [['6,000 tokens per month', 1], ['Highest-priority queue', 1], ['Early access to new models', 1], ['Longer video generations', 1], ['Priority support', 1]] },
             ];
-            $('plans-individual').innerHTML = plans.map(p => `
+            const price = (p, period) => {
+                if (p.free) return { main: '$0', note: 'Free for everyone' };
+                const { monthly, yearly } = p.pricing;
+                if (period === 'monthly') return { main: '$' + monthly.toFixed(2), note: p.trial ? `${p.trial}, then $${monthly.toFixed(2)}/month` : 'Billed monthly' };
+                const save = monthly * 12 - yearly, pct = Math.round(save / (monthly * 12) * 100);
+                return { main: '$' + (yearly / 12).toFixed(2), pct, note: `${p.trial ? p.trial + ', then ' : 'Billed '}$${yearly.toFixed(2)}/year · save $${save.toFixed(2)}` };
+            };
+            const renderPlans = (period) => { $('plans-individual').innerHTML = plans.map(p => `
                 <article class="p-8 lg:p-10 rounded-3xl bg-surface flex flex-col ${p.style === 'highlight' ? 'border border-mint/50' : 'hairline'}">
                     <div class="flex items-center justify-between">
                         <h3 class="text-xl font-semibold tracking-tight">${p.name}</h3>
                         ${p.style === 'highlight' ? '<span class="text-xs text-mint">Most popular</span>' : ''}
                     </div>
                     <p class="mt-1 text-sm text-muted">${p.sub}</p>
-                    <p class="mt-6 text-4xl font-bold tracking-[-0.04em]">${p.price}${p.price !== '$0' ? '<span class="text-base font-normal text-muted"> /mo</span>' : ''}</p>
-                    <p class="mt-1 text-xs text-faint">${p.note}</p>
+                    <div class="mt-6 flex items-baseline gap-2 flex-wrap">
+                        <span class="text-4xl font-bold tracking-[-0.04em] tabular-nums">${price(p, period).main}</span>
+                        ${p.free ? '' : '<span class="text-base text-muted">/mo</span>'}
+                        ${period === 'yearly' && !p.free ? `<span class="text-sm text-faint line-through tabular-nums">$${p.pricing.monthly.toFixed(2)}</span><span class="px-2 py-0.5 rounded-full border border-mint/50 text-[11px] font-medium text-mint">−${price(p, period).pct}%</span>` : ''}
+                    </div>
+                    <p class="mt-1 text-xs text-faint">${price(p, period).note}</p>
                     <a href="#download" class="mt-8 block text-center py-3 rounded-full font-medium ${p.style === 'highlight' ? 'bg-white text-ink hover:bg-white/90' : 'hairline hover:bg-white/[0.04]'} transition-colors">${p.cta}</a>
                     <div class="mt-8 pt-8 border-t border-white/[0.06]">
                         ${p.lead ? `<p class="text-sm font-medium mb-4">${p.lead}</p>` : ''}
@@ -1202,16 +1222,32 @@
                             ${p.items.map(([t, on]) => `<li class="flex gap-3 ${on ? 'text-white/85' : 'text-faint'}">${icon(on ? 'check' : 'minus', 'w-4 h-4 mt-0.5 shrink-0 ' + (on ? (p.style === 'highlight' ? 'text-mint' : 'text-muted') : ''))}${t}</li>`).join('')}
                         </ul>
                     </div>
-                </article>`).join('');
+                </article>`).join(''); renderIcons(); };
             
             const planTabs = document.querySelectorAll('.plan-tab');
             const setPlan = (k) => {
                 planTabs.forEach(t => setPill(t, t.dataset.plan === k));
                 $('plans-individual').classList.toggle('hidden', k !== 'individual');
                 $('plans-team').classList.toggle('hidden', k !== 'team');
+                $('billingSwitch').classList.toggle('invisible', k !== 'individual');
             };
+            let period = 'yearly';
+            const setPeriod = (pd) => {
+                period = pd;
+                document.querySelectorAll('.bill-opt').forEach(b => {
+                    const on = b.dataset.period === pd;
+                    b.setAttribute('aria-checked', String(on));
+                    b.classList.toggle('text-white', on); b.classList.toggle('text-muted', !on);
+                });
+                $('billKnob').style.transform = pd === 'yearly' ? 'translateX(20px)' : 'none';
+                $('billToggle').classList.toggle('bg-mint/30', pd === 'yearly');
+                renderPlans(pd);
+            };
+            document.querySelectorAll('.bill-opt').forEach(b => b.addEventListener('click', () => setPeriod(b.dataset.period)));
+            $('billToggle').addEventListener('click', () => setPeriod(period === 'yearly' ? 'monthly' : 'yearly'));
             planTabs.forEach(t => t.addEventListener('click', () => setPlan(t.dataset.plan)));
             setPlan('individual');
+            setPeriod('yearly');
 
             /* Capabilities: tone chips */
             const tones = [['Standard', 'message-circle'], ['Professional', 'briefcase'], ['Persuasive', 'target'], ['Friendly', 'smile']];
