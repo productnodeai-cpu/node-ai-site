@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — Node AI</title>
+    <meta name="description" content="These terms explain the rules for using Node AI — our apps, website and web app. Please read them carefully.">
+    <meta name="theme-color" content="#0B0B0C">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { ink: '#0B0B0C', surface: '#141416', raised: '#1D1D20', muted: '#8A8A90', faint: '#5C5C62', mint: '#9BE5BF' },
+            fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'] },
+        } } }
+    </script>
+    <style>
+        body { font-feature-settings: 'cv11', 'ss01'; }
+        /* Placeholder to replace before launch */
+        .ph { color: #9BE5BF; background: rgba(155, 229, 191, .08); border-bottom: 1px dashed rgba(155, 229, 191, .5); padding: 0 .2em; border-radius: 3px; }
+        .toc-link.active { color: #fff; border-color: #9BE5BF; }
+        :focus-visible { outline: 1px solid #9BE5BF; outline-offset: 3px; border-radius: 6px; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+</head>
+<body class="bg-ink text-white font-sans antialiased selection:bg-white/20">
+    <svg width="0" height="0" class="absolute" aria-hidden="true"><symbol id="node-logo" viewBox="0 0 512 512">
+            <path fill="currentColor" d="M185.1 92C208.795 92 228.104 110.768 228.979 134.249L229.013 134.229C229.013 134.229 233.345 164.188 242.521 181.521C249.443 194.594 268.026 209.086 276.74 215.418C277.643 215.901 278.526 216.416 279.39 216.959C286.269 219.704 308.479 228.111 324.565 228.965C338.639 229.712 356.747 222.481 365.477 218.535C372.7 213.317 381.572 210.239 391.164 210.239C415.418 210.239 435.079 229.901 435.079 254.154C435.079 278.408 415.418 298.069 391.164 298.069C382.898 298.069 375.166 295.784 368.563 291.812C362.749 288.824 345.376 280.845 325.171 280.527C307.224 280.245 290.237 286.144 282.162 289.453C281.281 290.106 280.375 290.728 279.444 291.315C276.927 293.4 255.638 311.271 246.118 327.06C236.016 343.815 235.776 378.971 235.775 379.137L235.646 379.063C233.956 401.774 214.997 419.675 191.854 419.675C167.601 419.675 147.939 400.013 147.939 375.76C147.94 359.401 156.885 345.132 170.15 337.575C176.814 332.34 191.165 319.886 200.331 303.341C212.567 281.253 211.878 257.095 211.875 256.99L212.095 257.101C211.922 253.574 210.324 228.845 198.602 208.541C187.74 189.728 170.636 178.326 166.011 175.475C151.319 168.372 141.185 153.327 141.185 135.915C141.185 111.661 160.846 92 185.1 92ZM323.602 328.469C347.855 328.469 367.517 348.13 367.517 372.384C367.517 396.637 347.855 416.299 323.602 416.299C299.348 416.299 279.687 396.637 279.687 372.384C279.687 348.13 299.348 328.469 323.602 328.469ZM120.915 210.239C145.169 210.239 164.83 229.901 164.83 254.154C164.83 278.408 145.169 298.069 120.915 298.069C96.6614 298.069 77 278.408 77 254.154C77.0001 229.901 96.6615 210.239 120.915 210.239ZM323.602 92C347.855 92 367.517 111.661 367.517 135.915C367.517 160.169 347.855 179.83 323.602 179.83C299.348 179.83 279.687 160.169 279.687 135.915C279.687 111.662 299.348 92 323.602 92Z"/>
+        </symbol></svg>
+
+    <header class="sticky top-0 z-50 bg-ink/80 backdrop-blur-xl border-b border-white/[0.06]">
+        <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-1.5" aria-label="Node AI home">
+                <svg class="w-9 h-9 -ml-1.5 text-white" aria-hidden="true"><use href="#node-logo"/></svg>
+                <span class="text-[17px] font-semibold tracking-tight">Node AI</span>
+            </a>
+            <ul class="hidden md:flex items-center gap-7 text-sm text-muted">
+                <li><a href="index.html#platform" class="hover:text-white transition-colors">Platform</a></li>
+                <li><a href="index.html#models" class="hover:text-white transition-colors">Models</a></li>
+                <li><a href="index.html#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="index.html#download" class="hover:text-white transition-colors">Download</a></li>
+            </ul>
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm text-muted hover:text-white transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to site
+            </a>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pt-16 pb-28">
+        <div class="max-w-3xl">
+            <p class="text-sm text-muted">Last updated <time>September 29, 2026</time></p>
+            <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold tracking-[-0.045em] leading-[1.02]">Terms of Service</h1>
+            <p class="mt-6 text-lg text-muted leading-relaxed">These terms explain the rules for using Node AI — our apps, website and web app. Please read them carefully.</p>
+            <nav class="mt-10 flex flex-wrap gap-2" aria-label="Legal documents"><a href="terms.html" class="px-4 py-2 rounded-full text-sm font-medium border border-mint/60 text-white bg-white/[0.04] transition-colors" aria-current="page">Terms of Service</a><a href="privacy.html" class="px-4 py-2 rounded-full text-sm font-medium border border-white/[0.08] text-muted hover:text-white transition-colors">Privacy Policy</a><a href="refund.html" class="px-4 py-2 rounded-full text-sm font-medium border border-white/[0.08] text-muted hover:text-white transition-colors">Refund Policy</a></nav>
+        </div>
+
+        <div class="mt-16 pt-12 border-t border-white/[0.06] grid lg:grid-cols-[240px_1fr] gap-12 lg:gap-16">
+            <aside class="hidden lg:block">
+                <div class="sticky top-28">
+                    <p class="text-xs font-medium text-faint mb-3">On this page</p>
+                    <ol class="border-l border-white/[0.08] text-sm">
+<li><a href="#agreement-to-these-terms" data-toc="agreement-to-these-terms" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Agreement to these terms</a></li>
+<li><a href="#who-can-use-node-ai" data-toc="who-can-use-node-ai" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Who can use Node AI</a></li>
+<li><a href="#your-license-to-use-the-service" data-toc="your-license-to-use-the-service" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Your license to use the service</a></li>
+<li><a href="#subscriptions-tokens-and-payments" data-toc="subscriptions-tokens-and-payments" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Subscriptions, tokens and payments</a></li>
+<li><a href="#acceptable-use" data-toc="acceptable-use" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Acceptable use</a></li>
+<li><a href="#ai-generated-content" data-toc="ai-generated-content" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">AI-generated content</a></li>
+<li><a href="#your-content-and-ownership" data-toc="your-content-and-ownership" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Your content and ownership</a></li>
+<li><a href="#third-party-models-and-services" data-toc="third-party-models-and-services" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Third-party models and services</a></li>
+<li><a href="#our-intellectual-property" data-toc="our-intellectual-property" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Our intellectual property</a></li>
+<li><a href="#suspension-and-termination" data-toc="suspension-and-termination" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Suspension and termination</a></li>
+<li><a href="#disclaimers" data-toc="disclaimers" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Disclaimers</a></li>
+<li><a href="#limitation-of-liability" data-toc="limitation-of-liability" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Limitation of liability</a></li>
+<li><a href="#indemnification" data-toc="indemnification" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Indemnification</a></li>
+<li><a href="#governing-law-and-disputes" data-toc="governing-law-and-disputes" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Governing law and disputes</a></li>
+<li><a href="#changes-to-these-terms" data-toc="changes-to-these-terms" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Changes to these terms</a></li>
+<li><a href="#contact-us" data-toc="contact-us" class="toc-link block py-1.5 pl-4 -ml-px border-l border-transparent text-muted hover:text-white transition-colors">Contact us</a></li>
+                    </ol>
+                </div>
+            </aside>
+
+            <article class="max-w-[68ch] space-y-14">
+<section id="agreement-to-these-terms" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">01</span>Agreement to these terms</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>By creating an account, downloading our apps or using Node AI in any way, you agree to these Terms of Service and to our <a href="privacy.html" class="text-white underline underline-offset-4 decoration-white/30 hover:decoration-white">Privacy Policy</a>. If you do not agree, do not use the service.</p>
+<p>Node AI is provided by <span class="ph">Company legal name</span>, registered at <span class="ph">Registered address</span> (&quot;Node AI&quot;, &quot;we&quot;, &quot;us&quot;). &quot;You&quot; means the person or organization using the service.</p></div>
+                    </section>
+<section id="who-can-use-node-ai" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">02</span>Who can use Node AI</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>You must be at least <span class="ph">16</span> years old, or the minimum age required in your country, to use Node AI. If you use Node AI on behalf of an organization, you confirm you are allowed to accept these terms for it.</p>
+<p>You are responsible for keeping your account credentials secure and for all activity that happens under your account.</p></div>
+                    </section>
+<section id="your-license-to-use-the-service" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">03</span>Your license to use the service</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>We give you a personal, revocable, non-exclusive, non-transferable license to use Node AI in line with these terms. You may not copy, resell, reverse-engineer or build a competing product from the service.</p></div>
+                    </section>
+<section id="subscriptions-tokens-and-payments" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">04</span>Subscriptions, tokens and payments</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>Some features require a paid plan. Plans renew automatically at the end of each billing period until you cancel.</p>
+<ul class="list-disc pl-5 space-y-2 marker:text-faint"><li><strong class="text-white font-medium">Plan tokens</strong> are added at the start of each billing period and expire when the period ends.</li><li><strong class="text-white font-medium">Top-up tokens</strong> are one-time purchases, valid for <span class="ph">12 months</span> from purchase, and are used only after plan tokens run out.</li><li>The token cost of each generation is shown before you start it.</li><li>Purchases made through the App Store or Google Play are processed and billed by Apple or Google under their terms.</li></ul>
+<p>We may change prices or plan contents. We will tell you in advance, and changes apply from your next billing period. Refunds are covered by our <a href="refund.html" class="text-white underline underline-offset-4 decoration-white/30 hover:decoration-white">Refund Policy</a>.</p></div>
+                    </section>
+<section id="acceptable-use" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">05</span>Acceptable use</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>You agree not to use Node AI to:</p>
+<ul class="list-disc pl-5 space-y-2 marker:text-faint"><li>break any law or infringe anyone’s rights, including intellectual property and privacy rights;</li><li>create content that sexualizes minors, promotes violence or terrorism, or harasses real people;</li><li>generate malware, spam, or content meant to deceive people, including impersonating real people or organizations;</li><li>attempt to bypass usage limits, safety filters or security measures;</li><li>violate the usage policies of the AI model providers we work with.</li></ul>
+<p>We may remove content or suspend accounts that break these rules.</p></div>
+                    </section>
+<section id="ai-generated-content" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">06</span>AI-generated content</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>Node AI gives you access to third-party AI models. AI output can be inaccurate, incomplete or unexpected. Check important information yourself and do not rely on Node AI for medical, legal, financial or other professional advice.</p>
+<p>Similar prompts can produce similar results for different users, so output may not be unique to you.</p></div>
+                    </section>
+<section id="your-content-and-ownership" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">07</span>Your content and ownership</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>You keep ownership of what you upload (prompts, files, images). Subject to these terms and the providers’ terms, you may use content you generate with Node AI, including for commercial purposes on plans that allow it.</p>
+<p>You give us a limited license to process your content only to operate, secure and improve the service, as described in our Privacy Policy.</p></div>
+                    </section>
+<section id="third-party-models-and-services" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">08</span>Third-party models and services</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>Node AI relies on models and services from third parties such as <span class="ph">OpenAI, Anthropic, Google, Midjourney, Kling, Suno</span>. Their availability, features and terms can change, and we may add, replace or remove models at any time.</p></div>
+                    </section>
+<section id="our-intellectual-property" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">09</span>Our intellectual property</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>The Node AI name, logo, apps, website and design are owned by <span class="ph">Company legal name</span> and protected by law. These terms do not give you any rights to them except the license above.</p></div>
+                    </section>
+<section id="suspension-and-termination" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">10</span>Suspension and termination</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>You can stop using Node AI and delete your account at any time in Profile settings. We may suspend or close your account if you break these terms or if we are required to by law. Sections that by their nature should survive termination will continue to apply.</p></div>
+                    </section>
+<section id="disclaimers" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">11</span>Disclaimers</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>Node AI is provided &quot;as is&quot; and &quot;as available&quot;. To the extent allowed by law, we do not promise that the service will be uninterrupted, error-free or that output will meet your needs.</p></div>
+                    </section>
+<section id="limitation-of-liability" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">12</span>Limitation of liability</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>To the extent allowed by law, Node AI is not liable for indirect, incidental or consequential damages, or for loss of data, profits or business. Our total liability for any claim is limited to the amount you paid us in the <span class="ph">12 months</span> before the claim.</p></div>
+                    </section>
+<section id="indemnification" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">13</span>Indemnification</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>You agree to cover our losses and costs if a claim is brought against us because of your content or your breach of these terms.</p></div>
+                    </section>
+<section id="governing-law-and-disputes" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">14</span>Governing law and disputes</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>These terms are governed by the laws of <span class="ph">Country / State</span>. Before starting formal proceedings, please contact us so we can try to resolve the issue informally. Disputes will be handled by the courts of <span class="ph">City, Country</span>, unless your local law gives you other rights.</p></div>
+                    </section>
+<section id="changes-to-these-terms" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">15</span>Changes to these terms</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>We may update these terms from time to time. We will post the new version here and update the date at the top. For significant changes we will notify you in the app or by email. Continuing to use Node AI means you accept the updated terms.</p></div>
+                    </section>
+<section id="contact-us" class="scroll-mt-24">
+                        <h2 class="flex items-baseline gap-3 text-xl font-semibold tracking-tight"><span class="text-sm font-normal text-faint tabular-nums w-6 shrink-0">16</span>Contact us</h2>
+                        <div class="legal mt-4 pl-9 space-y-4 text-white/70 leading-relaxed"><p>Questions about these terms: <span class="ph">support@node-ai.app</span>.</p></div>
+                    </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/[0.06]">
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between gap-4 text-xs text-faint">
+            <div class="flex gap-5">
+                <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="refund.html" class="hover:text-white transition-colors">Refund Policy</a>
+            </div>
+            <p>© <span id="year"></span> Node AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        // Highlight the current section in "On this page"
+        const links = [...document.querySelectorAll('.toc-link')];
+        const setActive = (id) => links.forEach(l => l.classList.toggle('active', l.dataset.toc === id));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        document.querySelectorAll('article > section').forEach(s => io.observe(s));
+        if (links[0]) setActive(links[0].dataset.toc);
+    </script>
+</body>
+</html>
