@@ -383,14 +383,21 @@
                             <p class="mt-2 text-sm text-muted leading-relaxed">Create images, music and video in one place — Midjourney, Flux, Kling and Suno.</p>
                         </div>
                         <div class="mt-auto px-8 pb-8 space-y-3">
-                            <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-raised hairline">
-                                <i data-lucide="play" class="w-4 h-4"></i>
-                                <div class="flex-1 flex items-center gap-[3px] h-5" aria-hidden="true" id="waveform"></div>
-                                <span class="text-[11px] text-muted tabular-nums">0:42</span>
+                            <div class="flex items-center gap-3 pl-2 pr-4 py-2 rounded-xl bg-raised hairline">
+                                <button type="button" id="lofiBtn" class="grid place-items-center w-8 h-8 rounded-full hover:bg-white/10 transition-colors" aria-label="Play lo-fi sample">
+                                    <svg id="lofiPlay" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M7 4.5v15l12-7.5-12-7.5Z"/></svg>
+                                    <svg id="lofiPause" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></svg>
+                                </button>
+                                <div class="flex-1 flex items-center gap-[3px] h-5 cursor-pointer" id="waveform" title="Lo-fi sample"></div>
+                                <span id="lofiTime" class="text-[11px] text-muted tabular-nums">0:13</span>
+                                <audio id="lofiAudio" src="assets/lofi-snippet.mp3" preload="none"></audio>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="aspect-square rounded-xl bg-cover bg-center bg-raised hairline" role="img" aria-label="Astronaut among glowing jellyfish" style="background-image:url(assets/img/creative-image.jpg)"></div>
-                                <div class="aspect-square rounded-xl bg-cover bg-center bg-raised hairline grid place-items-center" role="img" aria-label="Robot in a futuristic server room, video" style="background-image:url(assets/img/creative-video.jpg)"><span class="grid place-items-center w-10 h-10 rounded-full bg-black/45 backdrop-blur-sm hairline"><i data-lucide="play" class="w-4 h-4 text-white"></i></span></div>
+                                <div class="relative aspect-square rounded-xl overflow-hidden bg-raised hairline">
+                                    <img src="assets/img/creative-video.webp" alt="Looping clip: robot in a futuristic server room" class="w-full h-full object-cover" loading="lazy" width="400" height="400">
+                                    <span class="absolute top-2 left-2 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-black/50 text-[10px] text-white/85"><span class="w-1.5 h-1.5 rounded-full bg-mint"></span>Video</span>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -1116,11 +1123,31 @@
             let ci = 0;
             if (!reduceMotion) setInterval(() => { ci = (ci + 1) % ctxModels.length; $('ctxChip').textContent = ctxModels[ci]; }, 2200);
 
-            /* Waveform bars */
-            $('waveform').innerHTML = Array.from({ length: 32 }, (_, i) => {
-                const h = 20 + Math.round(Math.abs(Math.sin(i * 1.7)) * 80);
-                return `<span class="w-[3px] rounded-full ${i < 12 ? 'bg-white/80' : 'bg-white/20'}" style="height:${h}%"></span>`;
-            }).join('');
+            /* Lo-fi sample: plays once, waveform shows progress */
+            const PEAKS = [100, 66, 46, 38, 72, 55, 34, 98, 71, 52, 53, 76, 59, 36, 97, 84, 55, 43, 35, 77, 44, 61, 98, 64, 45, 79, 60, 51, 33, 26, 22, 22];
+            const wave = $('waveform'), audio = $('lofiAudio');
+            wave.innerHTML = PEAKS.map(h => `<span class="w-[3px] rounded-full bg-white/20 transition-colors duration-150" style="height:${h}%"></span>`).join('');
+            const bars = [...wave.children];
+            const fmtT = (sec) => `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, '0')}`;
+            const paint = () => {
+                const d = audio.duration || 13.8, pr = audio.currentTime / d;
+                bars.forEach((el, i) => { const on = i / bars.length < pr; el.classList.toggle('bg-mint', on); el.classList.toggle('bg-white/20', !on); });
+                $('lofiTime').textContent = fmtT(audio.currentTime === 0 ? d : d - audio.currentTime);
+            };
+            const setIcon = (playing) => {
+                $('lofiPlay').classList.toggle('hidden', playing); $('lofiPause').classList.toggle('hidden', !playing);
+                $('lofiBtn').setAttribute('aria-label', playing ? 'Pause lo-fi sample' : 'Play lo-fi sample');
+            };
+            $('lofiBtn').addEventListener('click', () => { if (audio.paused) audio.play(); else audio.pause(); });
+            wave.addEventListener('click', (e) => {
+                const rc = wave.getBoundingClientRect(), pr = (e.clientX - rc.left) / rc.width;
+                const go = () => { audio.currentTime = pr * audio.duration; audio.play(); };
+                if (audio.readyState >= 1) go(); else { audio.addEventListener('loadedmetadata', go, { once: true }); audio.load(); }
+            });
+            audio.addEventListener('play', () => setIcon(true));
+            audio.addEventListener('pause', () => setIcon(false));
+            audio.addEventListener('timeupdate', paint);
+            audio.addEventListener('ended', () => { audio.currentTime = 0; setIcon(false); paint(); });
 
             /* MODELS grid */
             const models = [
